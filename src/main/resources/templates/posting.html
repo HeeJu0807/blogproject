@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>새 글 작성</title>
+  <link rel="stylesheet" th:href="@{/css/posting.css}">
+</head>
+<body>
+
+<div class="container">
+  <form th:action="@{/write}" method="POST" enctype="multipart/form-data" class="post-form">
+    <div class="input-container">
+      <input type="text" id="title" name="title" class="input-field" placeholder="제목을 입력하세요" required>
+    </div>
+
+    <div class="input-container">
+      <input type="text" id="tags" name="tags" class="input-field" placeholder="태그를 입력하세요">
+    </div>
+
+    <div class="input-container">
+      <!-- 파일 선택 input -->
+      <label for="image-upload" class="add-image-button">
+        <img th:src="@{/images/image_icon.png}" class="icon">
+      </label>
+      <input type="file" id="image-upload" name="images" accept="multipart/form-data" style="display: none;">
+    </div>
+
+    <div class="input-container">
+      <textarea id="content" name="content" class="input-field" placeholder="내용을 입력하세요" rows="10" required></textarea>
+    </div>
+
+    <!-- Hidden textarea to hold final content with short URLs -->
+    <textarea id="hidden-content" name="hidden-content" style="display: none;"></textarea>
+
+
+    <input type="submit" value="출간" class="submit-button">
+  </form>
+</div>
+
+<script th:src="@{/js/posting.js}"></script>
+</body>
+</html>

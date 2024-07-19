@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>velog</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}" />
+</head>
+<body>
+<header class="header">
+    <div class="logo">
+        <h2>Velog</h2>
+    </div>
+    <div class="login">
+        <!-- 로그인된 사용자가 있을 경우 드롭다운 메뉴 -->
+        <div class="dropdown" sec:authorize="isAuthenticated()">
+            <a href="#" class="dropdown-toggle">
+                <span th:text="${user + ' 님'}"/>
+                <span class="caret-down">&#9660;</span> <!-- 삼각형 아이콘 -->
+            </a>
+            <div class="dropdown-menu">
+                <li><a th:href="@{/myvelog}">내 벨로그</a></li>
+                <li><a th:href="@{/write}">새 글 작성</a></li>
+                <li><a th:href="@{/temporary}">임시 글</a></li>
+                <li><a th:href="@{/readlist}">읽기 목록</a></li>
+                <li><a th:href="@{/setting}">설정</a></li>
+                <li class="divider"></li>
+                <li><a th:href="@{/logout}">로그아웃</a></li>
+            </div>
+        </div>
+        <!-- 로그인된 사용자가 없을 경우 로그인 링크 -->
+        <a sec:authorize="isAnonymous()" class="login-button" th:href="@{/login}">Login</a>
+    </div>
+
+</header>
+
+<!-- 검색 폼 추가 -->
+<div class="search-container">
+    <form id="search-form">
+<!--        <select id="search-type">-->
+<!--            <option value="title">제목</option>-->
+<!--            <option value="content">내용</option>-->
+<!--            <option value="author">이름</option>-->
+<!--        </select>-->
+        <input type="text" id="search-input" placeholder="검색어를 입력하세요">
+        <button type="submit" class="search-button">
+            <img th:src="@{/images/search_icon.png}" class="search-icon"> <!-- 이미지 아이콘 -->
+        </button>
+    </form>
+</div>
+
+<div class="content">
+    <!-- 모든 게시물 목록을 표시 -->
+    <div class="post-list">
+        <div th:each="post : ${posts}" class="post-item">
+            <a th:href="@{/post/{id}(id=${post.id})}" class="post-link">
+                <h3 th:text="${post.title}" class="post-title"></h3>
+                <div class="post-content" th:utext="${post.content}"></div> <!-- HTML 내용을 적용하기 위해 th:utext 사용 -->
+
+            </a>
+            <div class="post-meta">
+                by <span th:href="@{/user/{username}(username=${post.author.username})}" th:text="${post.author.username}" class="post-author"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script th:src="@{/js/home.js}"></script>
+
+</body>
+</html>

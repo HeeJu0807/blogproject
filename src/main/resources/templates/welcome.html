@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome</title>
+  <link rel="stylesheet" th:href="@{/css/welcome.css}" />
+</head>
+<body>
+<div class="welcome-container">
+  <h1>환영합니다, <span th:text="${username}"></span>님!</h1>
+  <p>회원 가입이 성공적으로 완료되었습니다.</p>
+  <form th:action="@{/login}" method="get">
+    <button type="submit" class="login-button">로그인</button>
+  </form>
+</div>
+</body>
+</html>

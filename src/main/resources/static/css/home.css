@@ -1,0 +1,202 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    margin-bottom: 40px;
+}
+
+.logo h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.login {
+    display:flex;
+    align-items: center;
+}
+
+.login-button, .dropdown-toggle {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #2E2E2E;
+    text-decoration: none;
+    border-radius: 50px;
+}
+
+.login-button:hover, .dropdown-toggle:hover {
+    background-color: #151515;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-toggle .caret-down {
+    margin-left: 8px;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.dropdown-menu {
+    position: absolute;
+    margin-top: 5px;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-width: 120px;
+    display: none; /* 초기에는 숨김 */
+    z-index: 1000;
+    list-style-type: none;
+}
+
+.dropdown-menu.show {
+    display: block; /* 토글 시 보이도록 설정 */
+}
+
+.dropdown-menu li {
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #f0f0f0;
+}
+
+.dropdown-menu .divider {
+    height: 1px;
+    margin: 0;
+    background-color: #e5e5e5;
+}
+
+.search-container {
+    display: flex;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    margin: 0 50px;
+}
+
+#search-form {
+    display: flex;
+    align-items: center;
+}
+
+/*#search-type {*/
+/*    padding: 7px 10px;*/
+/*    border: 1px solid #ddd;*/
+/*    border-radius: 4px 0 0 4px;*/
+/*    background-color: #fff;*/
+/*}*/
+
+#search-input {
+    padding: 8px 16px;
+    border: 2px solid #ddd;
+    border-radius: 0;
+    width: 160px;
+    outline-width: 1px;
+}
+
+/* 이미지 추가 버튼 스타일링 */
+.search-button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* 왼쪽 정렬 */
+    cursor: pointer;
+    background-color: #fff;
+    border: none;
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.post-item {
+    position: relative;
+    width: calc(100% - 20px); /* 각 포스트의 너비를 설정합니다. */
+    height: 300px;
+    padding-top: 20px; /* 정사각형을 유지하도록 패딩 퍼센트를 설정합니다. */
+    background-color: #fff; /* 배경색을 흰색으로 지정합니다. */
+    border: 1px solid #ddd; /* 테두리를 회색으로 지정합니다. */
+    border-radius: 5px; /* 모서리를 둥글게 만듭니다. */
+    overflow: hidden; /* 내용이 넘칠 경우 숨깁니다. */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 효과를 추가합니다. */
+    margin-bottom: 20px; /* 포스트 아이템 간의 간격을 설정합니다. */
+}
+
+@media (min-width: 768px) {
+    .post-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 최소 250px의 열을 생성하며, 화면에 맞춰 자동으로 조정됩니다. */
+        gap: 20px; /* 포스트 사이의 간격을 설정합니다. */
+        justify-items: center; /* 포스트를 그리드의 가운데에 배치합니다. */
+        margin-left: 50px;
+        margin-right: 50px;
+        margin-top: 25px;
+    }
+}
+
+
+
+.post-item:hover {
+    transform: translateY(-5px);
+}
+
+.post-link {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    padding: 10px 20px;
+}
+
+.post-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0; /* 제목의 여백을 초기화 */
+}
+
+
+.post-content {
+    margin-top: 10px;
+    overflow: hidden; /* 내용이 넘칠 경우 숨깁니다. */
+    text-overflow: ellipsis; /* 길어진 텍스트는 생략 부호(...)로 표시됩니다. */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* 표시할 최대 줄 수를 설정합니다. */
+    -webkit-box-orient: vertical;
+}
+
+.post-meta {
+    color: #666;
+    font-size: 14px;
+    position: absolute;
+    border-top: 1px solid #ddd;
+    bottom: 10px; /* 포스트 아이템의 아래에 위치 */
+    width: 100%; /* 포스트 아이템과 같은 너비로 설정 */
+    padding: 10px 10px 0 10px;
+}
+
+.post-author {
+    font-weight: bold; /* 작성자 이름을 두껍게 설정합니다. */
+
+}

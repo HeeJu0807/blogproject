@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sign Up</title>
+    <link rel="stylesheet" th:href="@{/css/signup.css}" />
+</head>
+<body>
+<div class="signup-container">
+    <h1>Sign up</h1>
+    <form id="signupForm" th:action="@{/signup}" th:object="${user}" method="post" >
+        <div>
+            <input type="text" id="username" th:field="*{username}" placeholder="ID" required
+                   th:classappend="${#fields.hasErrors('username')} ? 'error-field' : ''"/>
+            <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error-message"></p>
+        </div>
+        <div>
+            <input type="password" id="password" th:field="*{password}" placeholder="Password" required
+                   th:classappend="${#fields.hasErrors('password')} ? 'error-field' : ''"/>
+            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error-message"></p>
+        </div>
+        <div>
+            <input type="text" id="name" th:field="*{name}" placeholder="Name" required
+                   th:classappend="${#fields.hasErrors('name')} ? 'error-field' : ''"/>
+            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error-message"></p>
+        </div>
+        <div>
+            <input type="email" id="email" th:field="*{email}" placeholder="Email" required
+                   th:classappend="${#fields.hasErrors('email')} ? 'error-field' : ''"/>
+            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error-message"></p>
+
+        </div>
+        <div>
+            <button type="submit">가입하기</button>
+        </div>
+    </form>
+    <div class="login-link">
+        계정이 이미 있으신가요? <a th:href="@{/login}">로그인</a>
+    </div>
+</div>
+
+</body>
+</html>
